@@ -1,12 +1,12 @@
 import datetime
 
 from discord.ext import commands, tasks
-from zoneinfo import ZoneInfo
+import pytz
 
 from logger import create_logger
 
 
-mt = ZoneInfo("US/Mountain")
+mt = pytz.timezone("US/Mountain")
 time = datetime.time(hour=0, tzinfo=mt)
 
 
@@ -18,7 +18,6 @@ class Kicker(commands.Cog):
 
 
     # This doesn't actually kick anybody, but it keeps me from sitting idle.
-    # I like to watch Discord streams at night as I am heading to bed. lol
     @tasks.loop(time=time)
     async def kicker(self):
         self.logger.info("The sleeping owner check has started.")
