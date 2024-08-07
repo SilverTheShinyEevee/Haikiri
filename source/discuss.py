@@ -66,13 +66,13 @@ class Discuss(commands.Cog):
                         response.raise_for_status()
 
 
-    # Every twelve hours, a prompt will be sent to the main discussion channel.
+    # Every twelve hours, a prompt will be sent to the off-topic channel.
     # Currently, it is either a fact or a question about a conversation starter.
     @tasks.loop(time=datetime.time(hour=12, tzinfo=utc))
     async def discussion_starter(self):
         await self.bot.wait_until_ready()
         discussion_starters = discuss["topics"]
-        channel = self.bot.get_channel(config["channels"]["#chat-hangout"])
+        channel = self.bot.get_channel(config["channels"]["#off-topic"])
 
         # The prompt for stating a fact about a discussion starter.
         fact_prompt = (
@@ -80,6 +80,7 @@ class Discuss(commands.Cog):
             f"If you state a fact, you can start with 'Did you know that...?' "
             f"Please make sure you give decent information. Two sentences is great."
             f"Just state the fact by itself, nothing such as 'Sure!'"
+            f"Please state which ChatGPT model was used at the end of the message."
         )
 
         # The prompt for asking a question about a discussion starter.
@@ -90,6 +91,7 @@ class Discuss(commands.Cog):
             f"Also, prefer open-ended questions, like opinions, over factual questions. "
             f"Please refrain from asking yes or no questions, though. "
             f"Just state the question by itself, nothing such as 'Sure!'"
+            f"Please state which ChatGPT model was used at the end of the message"
         )
         prompt = random.choice([fact_prompt, question_prompt])
 
@@ -105,17 +107,17 @@ class Discuss(commands.Cog):
         })
         async with channel.typing():
             # Log the estimation of tokens that will be used.
-            self.logger.info("Sending request to GPT-4 estimated to use "
+            self.logger.info("Sending request to ChatGPT estimated to use "
                 f"{len(prompt)} tokens.")
             response = await self.send_to_gpt(conversation)
             await channel.send(response)
 
 
-    # If the bot is mentioned, it will respond to the message with a GPT-4 response.
+    # If the bot is mentioned, it will respond to the message with a GPT-3.5/4 response.
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
         if self.bot.user.mentioned_in(message) and message.author != self.bot.user and not message.mention_everyone \
-            and message.channel == self.bot.get_channel(config["channels"]["#raichu-terminal"]):
+            and message.channel == self.bot.get_channel(config["channels"]["#haikiri-hub"]):
             # Get the names of the bot, user, and server.
             bot_name = discord.utils.get(message.guild.members, id=self.bot.user.id).display_name
             user_name = message.author.display_name
@@ -129,6 +131,7 @@ class Discuss(commands.Cog):
                 f"for each message. Your goal is to provide valuable assistance and engage in meaningful "
                 f"conversations with users. If possible, keep responses short and to the point, a few "
                 f"sentences at most."
+                f"Please also state which ChatGPT model was used to generate the response at the end of the message."
             )
 
             # If the channel isn't in the conversations dictionary, add it.
@@ -169,7 +172,7 @@ class Discuss(commands.Cog):
             if request != "":
                 async with message.channel.typing():
                     # Log the estimation of tokens that will be used
-                    self.logger.info("Sending request to GPT-4 estimated to use "
+                    self.logger.info("Sending request to ChatGPT estimated to use "
                         f"{len(request) + len(prompt)} tokens.")
                     response = await self.send_to_gpt(conversation)
                     await message.reply(response, allowed_mentions=discord.AllowedMentions.none())
