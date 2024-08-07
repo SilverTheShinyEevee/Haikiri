@@ -14,10 +14,10 @@ class Inform(commands.Cog):
     @app_commands.command()
     async def build(self, interaction: discord.Interaction):
         "Shows information regarding the bot."
-        embed = discord.Embed(title="Raichu", url="https://github.com/Nightkingale/Raichu",
-            description="A Discord utility bot for Nightkingale Studios.", color=0xffff00)
-        embed.set_author(name="Nightkingale", url="https://nightkingale.com",
-            icon_url="https://avatars.githubusercontent.com/u/63483138?v=4")
+        embed = discord.Embed(title="Haikiri", url="https://github.com/SilverTheShinyEevee/Haikiri",
+            description="A Discord utility bot for Pokémon Mystery Dungeon: Silver Saviors of the Sky.", color=0xffff00)
+        embed.set_author(name="SilverTheShinyEevee", url="https://silvertheshinyEevee.github.io",
+            icon_url="https://avatars.githubusercontent.com/u/122472763?v=4")
         embed.set_thumbnail(url="https://cdn.discordapp.com/avatars/"
             + "983846918683770941/7f2ad37cee31d9599ae51a1d3082fb56.png?size=256")
         
@@ -49,7 +49,7 @@ class Inform(commands.Cog):
     async def invite(self, interaction: discord.Interaction):
         "Sends a link to an affiliated server."
         await interaction.response.send_message("Share this link to invite people! "
-            + f"https://discord.gg/mYjeaZQ")
+            + f"https://discord.gg/aEYSz2yXpm")
         
 
     @app_commands.command()
