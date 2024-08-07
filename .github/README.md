@@ -1,4 +1,4 @@
-# Raichu
+# Silver
 
 A utility Discord bot for the Pokemon Mystery Dungeon: Silver Saviors of the Sky Discord server.
 
