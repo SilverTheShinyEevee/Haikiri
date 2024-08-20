@@ -1,4 +1,4 @@
-# Silver
+# Haikiri
 
 A utility Discord bot for the Pokemon Mystery Dungeon: Silver Saviors of the Sky Discord server.
 
@@ -9,12 +9,12 @@ A utility Discord bot for the Pokemon Mystery Dungeon: Silver Saviors of the Sky
   <a href="https://paypal.me/SilverTheShinyEevee?country.x=US&locale.x=en_US">
     <img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="Thank you!" width="10%" height="10%">
   </a>
-  <a href="https://silver the shinyeevee.github.io">
+  <a href="https://silvertheshinyeevee.github.io">
     <img src="https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white" alt="Visit us!" width="10%" height="10%">
   </a>
 </p>
 
-Haikiri is a simple Discord bot built to fit the means of the Pokemon Mystery Dungeon: Silver Saviors of the Sky Discord server, utilizing new features such as slash commands.
+Haikiri is a simple Discord bot built to fit the means of the Pokemon Mystery Dungeon: Silver Saviors of the Sky Discord server, utilizing features such as slash commands.
 
 ## Usage
 If you would like to see Silver in action, click [here](https://discord.gg/aEYSz2yXpm) to join our Discord server! If you would like to see Silver in it's original form in action, called Raichu over there, click [here](https://discord..nightkingale.com) to join their Discord server!
